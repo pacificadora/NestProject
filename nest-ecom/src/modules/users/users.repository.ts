@@ -30,8 +30,8 @@ export class UsersRepository {
     return this.usersModel.delete(id);
   }
 
-  async getUserByUsername(username: string, password: string) {
-    return this.usersModel.findOne({
+  async getUserByUsername(username: string, password: string): Promise<User> {
+    return await this.usersModel.findOne({
       where: { username: username, password: password },
     });
   }
