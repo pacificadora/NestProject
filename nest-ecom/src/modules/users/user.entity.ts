@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { BaseEntity } from 'src/utils/entity/base.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
 import { Cart } from '../carts/cart.entity';

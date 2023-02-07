@@ -31,8 +31,10 @@ export class UsersRepository {
   }
 
   async getUserByUsername(username: string, password: string): Promise<User> {
-    return await this.usersModel.findOne({
-      where: { username: username, password: password },
-    });
+
+    const res = await this.usersModel.findOne({where: {username, password}});
+    console.log(res);
+    return res;
+    
   }
 }
