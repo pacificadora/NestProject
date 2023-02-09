@@ -14,11 +14,12 @@ export class PaymentRepository {
     private readonly orderService: OrdersService
   ) {}
 
-  async createPayment(id: number, createPaymentDto: CreatePaymentDto) {
+  async createPayment(orderId: number, createPaymentDto: CreatePaymentDto) {
     const payment: Payment = new Payment();
     payment.paymentComplete = createPaymentDto.paymentComplete;
-    payment.order = await this.orderService.getOrdersByOrderId(id);
-    return this.paymentModel.create(payment);
+    // payment.otpGenerated = new Date().toString;
+    payment.order = await this.orderService.getOrdersByOrderId(orderId);
+    return this.paymentModel.save(payment);
   }
 
   async findAllPayments(): Promise<Payment[]> {

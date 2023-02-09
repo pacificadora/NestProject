@@ -6,7 +6,7 @@ import { JwTAuthGuard } from './modules/auth/guards/jwt.guards';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   console.log('???????????????');
-  app.useGlobalGuards(new JwTAuthGuard());
+  //app.useGlobalGuards(new JwTAuthGuard());
   await app.listen(3000);
 }
 bootstrap();
