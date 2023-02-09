@@ -7,6 +7,7 @@ import { Order } from '../orders/order.entity';
 export class Payment extends BaseEntity {
   @Column()
   paymentComplete: boolean;
+  
 
   @OneToOne(() => Order, (order: Order) => order.payment)
   @JoinColumn({name: 'orderId'})

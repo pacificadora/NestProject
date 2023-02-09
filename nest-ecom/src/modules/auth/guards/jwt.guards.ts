@@ -9,10 +9,13 @@ export class JwTAuthGuard extends AuthGuard('jwt') {
 
     const ctx = context.switchToHttp();
     const request: any = ctx.getRequest<Request>();
-    for (let x = 0; x < Constants.BY_PASS_URLS.length; x++) {
-      if (request.url == "/auth/login" || request.url=="/users/signup") {
-        return true;
-      }
+    // for(let x=0; x<Constants.BY_PASS_URLS.length; x++){
+    //   if(request.url == Constants.BY_PASS_URLS[x]){
+    //     return true;
+    //   }
+    // }
+    if(request.url == "/auth/login" || request.url == "/users/signup"){
+      return true;
     }
     return super.canActivate(context);
   }

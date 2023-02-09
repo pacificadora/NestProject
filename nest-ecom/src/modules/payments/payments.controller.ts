@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Controller,
   Get,
@@ -15,7 +16,7 @@ import { UpdatePaymentDto } from './dto/update-payment.dto';
 export class PaymentsController {
   constructor(private readonly paymentsService: PaymentsService) {}
 
-  @Post(':/orderId')
+  @Post('/:orderId')
   create(
     @Param('orderId') orderId: number,
     @Body() createPaymentDto: CreatePaymentDto,
@@ -30,7 +31,7 @@ export class PaymentsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.paymentsService.findOne(+id);
+    return this.paymentsService.getPaymentById(+id);
   }
 
   @Patch(':id')
@@ -41,5 +42,10 @@ export class PaymentsController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.paymentsService.remove(+id);
+  }
+
+  @Patch('update/:paymentId')
+  async updatePayment(@Param('paymentId') paymentId: number){
+    return await this.paymentsService.updatePaymentStatusAfter5Min(paymentId)
   }
 }

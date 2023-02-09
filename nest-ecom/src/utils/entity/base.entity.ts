@@ -23,7 +23,7 @@ export class BaseEntity {
   })
   updatedBy!: string;
 
-  @CreateDateColumn({
+  @Column({
     default: new Date(),
   })
   createdOn!: Date;
