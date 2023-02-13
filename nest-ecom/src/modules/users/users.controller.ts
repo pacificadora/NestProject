@@ -46,5 +46,10 @@ export class UsersController {
     return await this.usersService.remove(+id);
   }
 
+  @Get('/time/:userId')
+  async getUserCreateTime(@Param('userId') userId: number) {
+    return await this.usersService.userUpdate(userId);
+  }
+
   //user done with its api tested.
 }

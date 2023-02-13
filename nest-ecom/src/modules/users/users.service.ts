@@ -5,6 +5,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.entity';
 import { UsersRepository } from './users.repository';
 
+import dataSource from 'db/data-source';
+
 @Injectable()
 export class UsersService {
   constructor(private readonly userRepository: UsersRepository) {}
@@ -31,5 +33,21 @@ export class UsersService {
 
   async getUserByUsername(username: string, password: string): Promise<User> {
     return this.userRepository.getUserByUsername(username, password);
+  }
+
+  // async updateUser(userId: number){
+  //   const user = await this.createQueryBuilder(Alias.userTokens)
+  //     .where(`${Alias.userTokens}.type = :type`, { type })
+  //     .innerJoinAndSelect(`${Alias.userTokens}.user`, Alias.users)
+  //     .andWhere(`${Alias.userTokens}.token = :token`, { token })
+  //     .addSelect(
+  //       `${Alias.userTokens}.createdAt at time zone 'utc'`,
+  //       'createdAtUTC',
+  //     )
+  //     .getRawAndEntities();
+     
+  // }
+  async userUpdate(userId: number){
+    this.userRepository.userUpdate(userId);
   }
 }

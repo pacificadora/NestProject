@@ -31,10 +31,27 @@ export class UsersRepository {
   }
 
   async getUserByUsername(username: string, password: string): Promise<User> {
-
-    const res = await this.usersModel.findOne({where: {username, password}});
+    const res = await this.usersModel.findOne({
+      where: { username, password },
+    });
     console.log(res);
     return res;
+  }
+  // async abc(){
+  //   this.usersModel.createQueryBuilder('user').innerJoin()
+  // }
+ 
+  async userUpdate(userId: number) {
+    const user = await this.usersModel
+      .createQueryBuilder()
+      .select(`"createdOn" at time zone 'utc'`, 'createdAtUTC')
+      .where({ id: userId })
+      // .from(User, 'user')
+      // .getOne();
+      .getRawAndEntities();
+    // user.createdOn;
+    console.log(user);
+    console.log(user.raw[0].createdAtUTC);
     
   }
 }
